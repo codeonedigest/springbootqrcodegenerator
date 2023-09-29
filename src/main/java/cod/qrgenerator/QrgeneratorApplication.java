@@ -26,6 +26,7 @@ public class QrgeneratorApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		while (true) {
 			Scanner scanner = new Scanner(System.in);
 
@@ -33,9 +34,9 @@ public class QrgeneratorApplication implements CommandLineRunner {
 			log.info("Enter your message: ");
 
 			// get their input as a String
-			String inputMessage = scanner.next();
+			String inputMessage = scanner.nextLine();
 
-			log.info("Input Message is {}", inputMessage);
+			log.info("Input Message from console - {}", inputMessage);
 			if (StringUtils.isNotBlank(inputMessage)) {
 				qrCodeGeneratorService.generateQRCode(inputMessage);
 			}

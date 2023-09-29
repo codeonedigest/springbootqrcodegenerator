@@ -39,14 +39,13 @@ public class QRCodeGeneratorService {
 
     public void generateQRCode(String message) {
         log.info("### Generating QRCode ###");
-        Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
-        //generates QR code with Low level(L) error correction capability
-        hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-        log.info("Message - {}", qrCodeMessage);
+
+
         log.info("Output directory - {}", outputLocation);
         try {
             String finalMessage = (StringUtils.isBlank(message))?qrCodeMessage:message;
-            processQRcode(finalMessage, prepareOutputFileName(), charset, hashMap,400, 400);
+            log.info("Final Input Message - {}", finalMessage);
+            processQRcode(finalMessage, prepareOutputFileName(), charset, 400, 400);
 
         } catch (WriterException e) {
             e.printStackTrace();
@@ -66,7 +65,7 @@ public class QRCodeGeneratorService {
         return sb.toString();
     }
 
-    private void processQRcode(String data, String path, String charset, Map map, int height, int width) throws WriterException, IOException {
+    private void processQRcode(String data, String path, String charset, int height, int width) throws WriterException, IOException {
         /*the BitMatrix class represents the 2D matrix of bits*/
        /* MultiFormatWriter is a factory class that finds the appropriate Writer subclass for
         the BarcodeFormat requested and encodes the barcode with the supplied contents.*/
